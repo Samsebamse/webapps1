@@ -1,0 +1,34 @@
+﻿@model List<Webapps1.Models.Flyplass>
+
+@{
+    ViewBag.Title = "Liste av alle flyplasser";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            By
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.By
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.FlyplassId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.FlyplassId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.FlyplassId })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.ActionLink("Liste alle ruter", "ListeRuter")
