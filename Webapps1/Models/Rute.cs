@@ -11,12 +11,12 @@ namespace Webapps1.Models
     {
         [Key]
         public int RuteId { get; set; }
-        public virtual List<Billett> Billetter { get; set; }
         public string Fra { get; set; }    
         public string Til { get; set; }
         public string Avgang { get; set; }
         public string Ankomst { get; set; }
         public int Pris { get; set; }
+        public virtual List<Billett> Billetter { get; set; }
 
     }
     

@@ -17,6 +17,7 @@ namespace Webapps1
             Database.CreateIfNotExists();
             Database.SetInitializer(new DBInit());
         }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -26,6 +27,7 @@ namespace Webapps1
         public virtual DbSet<Rute> Ruter { get; set; }
         public virtual DbSet<Billett> Billetter { get; set; }
         public virtual DbSet<Reservasjon> Reservasjoner { get; set; }
+
 
 
     }

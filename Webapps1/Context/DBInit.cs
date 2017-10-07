@@ -31,6 +31,14 @@ namespace Webapps1.Context
             });
             ruter.Add(new Rute()
             {
+                Fra = context.Flyplasser.Find(1).By,
+                Til = context.Flyplasser.Find(2).By,
+                Avgang = format2,
+                Ankomst = format3,
+                Pris = 1890
+            });
+            ruter.Add(new Rute()
+            {
                 Fra = context.Flyplasser.Find(3).By,
                 Til = context.Flyplasser.Find(4).By,
                 Avgang = format1,

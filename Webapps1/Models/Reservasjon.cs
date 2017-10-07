@@ -10,7 +10,7 @@ namespace Webapps1.Models
     {
         [Key]
         public int ReservasjonId { get; set; }
-        public List<Billett> Billetter { get; set; }
         public DateTime Bestilt { get; set; }
+        public virtual List<Billett> Billetter { get; set; }
     }
 }

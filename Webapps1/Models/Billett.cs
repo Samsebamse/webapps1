@@ -10,8 +10,8 @@ namespace Webapps1.Models
     {
         [Key]
         public int BillettId { get; set; }
-        public virtual Reservasjon Reservasjon { get; set; }
         public string Fornavn { get; set; }
         public string Etternavn { get; set; }
+        public virtual Reservasjon Reservasjon { get; set; }
     }
 }

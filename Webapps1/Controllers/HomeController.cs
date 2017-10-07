@@ -26,11 +26,11 @@ namespace Webapps1.Controllers
         }
         public ActionResult ListeRuter()
         {
-            /*
+    
             List<Rute> listeRuter = db.Ruter.ToList();
             return View(listeRuter);
-            */
-            return View();
+      
+   
         }
 
         public ActionResult NyBillett(Billett nyBillett)
@@ -46,6 +46,8 @@ namespace Webapps1.Controllers
             List<Reservasjon> alleReservasjoner = db.Reservasjoner.ToList();
             return View(alleReservasjoner);
         }
+
+        [HttpPost]
         public string HentAlleRuter()
         {
         /*
@@ -64,16 +66,15 @@ namespace Webapps1.Controllers
             string json = jsonSerializer.Serialize(alleRuter);
             return json;
         }
+
+        [HttpPost]
         public string HentValgteRuter(string fra, string til)
         {
-
             List<Rute> alleRuter = db.Ruter.ToList();
             List<Rute> valgteRuter = new List<Rute>();
-            foreach(Rute r in alleRuter)
-            {
-                Rute funnetRute = alleRuter.SingleOrDefault(v => r.Fra == fra);
-                valgteRuter.Add(funnetRute);
-            }
+
+            valgteRuter = alleRuter.Where(a => a.Fra.Equals(fra) && a.Til.Equals(til)).ToList();
+
             JavaScriptSerializer jsonSerializer = new JavaScriptSerializer();
             string json = jsonSerializer.Serialize(valgteRuter);
             return json;
