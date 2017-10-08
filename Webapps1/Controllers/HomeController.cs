@@ -42,7 +42,7 @@ namespace Webapps1.Controllers
         [HttpPost]
         public ActionResult NyBillett(Billett billett)
         {
-            var id = Convert.ToInt32(Session["ruteId"]);
+            var rId = (int)(Session["ruteId"]);
 
             if (ModelState.IsValid)
             {
@@ -50,22 +50,30 @@ namespace Webapps1.Controllers
                 {
                     Fornavn = billett.Fornavn,
                     Etternavn = billett.Etternavn,
-                    RuteId = id,
+                    RuteId = rId,
                 };
 
                 db.Billetter.Add(nyBillett);
                 db.SaveChanges();
-                return RedirectToAction("ListeBilletter");
+                var id = nyBillett.BillettId;
+                return RedirectToAction("VisKvittering", new {id = id});
             }
            
             
             return View();
         }
-        
-        public ActionResult ListeBestillinger()
+        public ActionResult AvbrytBestilling()
         {
-            var alleBestillinger = from o in db.Billetter join o2 in db.Ruter on o.BillettId equals o2.RuteId where o.RuteId.Equals(o2.RuteId) select new Bestillinger { };
-            return View(alleBestillinger);
+            Session["ruteId"] = null;
+            Session.Remove("ruteId");
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult VisKvittering(int id)
+        {
+            Billett dinBillett = db.Billetter.Find(id);
+            return View(dinBillett);
         }
 
         [HttpPost]
