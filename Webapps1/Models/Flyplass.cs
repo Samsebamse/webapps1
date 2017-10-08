@@ -12,7 +12,6 @@ namespace Webapps1.Models
         public int FlyplassId { get; set; }
         public string By { get; set; }
 
-
     }
 
 }

@@ -28,7 +28,5 @@ namespace Webapps1
         public virtual DbSet<Billett> Billetter { get; set; }
         public virtual DbSet<Reservasjon> Reservasjoner { get; set; }
 
-
-
     }
 }

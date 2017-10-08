@@ -16,7 +16,7 @@ namespace Webapps1.Models
         public string Avgang { get; set; }
         public string Ankomst { get; set; }
         public int Pris { get; set; }
-        public virtual List<Billett> Billetter { get; set; }
+        //public virtual List<Billett> Billetter { get; set; }
 
     }
     

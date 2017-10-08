@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bestillinger.cs" />
     <Compile Include="Models\Billett.cs" />
     <Compile Include="Context\DB.cs" />
     <Compile Include="Models\Flyplass.cs" />
@@ -153,9 +154,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\ListeRuter.cshtml" />
-    <Content Include="Views\Home\Reservasjon.cshtml" />
     <Content Include="Views\Home\NyBillett.cshtml" />
+    <Content Include="Views\Home\ListeBilletter.cshtml" />
+    <Content Include="Views\Home\ListeBestillinger.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
