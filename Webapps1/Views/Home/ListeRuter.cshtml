@@ -1,14 +1,13 @@
 ﻿@model List<Webapps1.Models.Rute>
 
 @{
-    ViewBag.Title = "Liste av alle Ruter";
+    ViewBag.Title = "Søk etter reise";
 }
 
 
     <!-- TRENGER KANSKJE Å IMPORTE FLER JQUERY FILER -->
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js"></script>
-
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
     <script type="text/javascript">
@@ -49,140 +48,131 @@
 
         }
         function visValgteRuter(valgteRuter) {
+
             var utString = "";
+
             for (var i in valgteRuter) {
+
                 utString +=
                     "<tr>" +
+                    "<td>" + valgteRuter[i].RuteId + "</td>" +
                     "<td>" + valgteRuter[i].Fra + "</td>" +
                     "<td>" + valgteRuter[i].Til + "</td>" +
                     "<td>" + valgteRuter[i].Avgang + "</td>" +
                     "<td>" + valgteRuter[i].Ankomst + "</td>" +
                     "<td>" + valgteRuter[i].Pris + "</td>" +
-                    "</tr>";
+                    "<td>" + "<button type =\"button\" onclick=\"knapper(" + valgteRuter[i].RuteId + ")\" id = \"ruteId" + valgteRuter[i].RuteId + "\" class = \"btn-success\" value=" + valgteRuter[i].RuteId + ">" + "Kjøp" + "</button>" + "</td>" +
+                    "</tr>"; 
             }
             $("#serverData").append(utString);
         }
 
-        function visAlleRuter(alleKunder) {
+        function visAlleRuter(alleRuter) {
+
             var utString = "";
-            for (var i in alleKunder) {
+
+            for (var i in alleRuter) {
+  
                 utString +=
                     "<tr>" +
-                    "<td>" + alleKunder[i].Fra + "</td>" +
-                    "<td>" + alleKunder[i].Til + "</td>" +
-                    "<td>" + alleKunder[i].Avgang + "</td>" +
-                    "<td>" + alleKunder[i].Ankomst + "</td>" +
-                    "<td>" + alleKunder[i].Pris + "</td>" +
+                    "<td>" + alleRuter[i].RuteId + "</td>"  +
+                    "<td>" + alleRuter[i].Fra + "</td>"     +
+                    "<td>" + alleRuter[i].Til + "</td>"     +
+                    "<td>" + alleRuter[i].Avgang + "</td>"  +
+                    "<td>" + alleRuter[i].Ankomst + "</td>" +
+                    "<td>" + alleRuter[i].Pris + "</td>" +
+                    "<td>" + "<button type =\"button\" onclick=\"knapper(" + alleRuter[i].RuteId + ")\" id = \"ruteId" + alleRuter[i].RuteId + "\" class = \"btn-success\" value=" + alleRuter[i].RuteId + ">" + "Kjøp" + "</button>" + "</td>" +
                     "</tr>";
             }
             $("#serverData").append(utString);
         }
 
 
-        function forslagFra() {
+        function knapper(innVerdi) {
+            alert(innVerdi);     
+            
 
-            var funnetOrd = [];
-
-            @foreach (var item in Model)
-            {
-
-                @:funnetOrd.push(@item.Fra);
- 
-
-            }
-            $("#fra").autocomplete({source: funnetOrd});
-        });
-
-        function forslagTIl() {
-
-            var funnetOrd = [];
-
-            @foreach (var item in Model)
-            {
-                @:funnetOrd.push(@item.Til);
-
-            }
-            $("#til").au({ source: funnetOrd });
-        });
-
-
-
-
+        }
 
 </script>
-    <h2>ListeRuter</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+
+    <h2>ListeRuter</h2>
 
     <div class="form-group row">
         <label for="example-text-input" class="col-2 col-form-label">Fra</label>
         <div class="col-10">
-            <input class="form-control" type="text" id="fra" oninput="forslagFra()">
+            <input class="form-control" type="text" id="fra">
         </div>
     </div>
     <div class="form-group row">
         <label for="example-search-input" class="col-2 col-form-label">Til</label>
         <div class="col-10">
-            <input class="form-control" type="text" id="til" oninput="forslagTIl()">      
+            <input class="form-control" type="text" id="til">      
         </div>
     </div>
-            <table class="table" id="serverData">
+        <table class="table" id="serverData">
+            <tr>
+                <th>
+                    Rute
+                </th>
+                <th>
+                    Fra
+                </th>
+                <th>
+                    Til
+                </th>
+                <th>
+                    Avgang
+                </th>
+                <th>
+                    Ankomst
+                </th>
+                <th>
+                    Pris
+                </th>
+                <th></th>
+            </tr>
+ 
+
+        </table>
+    
+
+<table>
+        @*@foreach (var item in Model) {
                 <tr>
-                    <th>
-                        Fra
-                    </th>
-                    <th>
-                        Til
-                    </th>
-                    <th>
-                        Avgang
-                    </th>
-                    <th>
-                        Ankomst
-                    </th>
-                    <th>
-                        Pris
-                    </th>
-                    <th></th>
+                    <td>
+                        @item.Fra
+                    </td>
+                    <td>
+                        @item.Til
+                    </td>
+                    <td>
+                        @item.Avgang
+                    </td>
+                    <td>
+                        @item.Ankomst
+                    </td>
+                    <td>
+                        @item.Pris
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.RuteId }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.RuteId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.RuteId })
+                    </td>
                 </tr>
-            </table>
+            }*@
+    </table>
+    <button class="btn-primary" onclick="hentAlleRuter()"> Alle reiser </button>
+    <br />
+    <button class="btn-primary" onclick="hentValgteRuter()"> Søk valgte reiser</button>
 
-            <table>
-                @*@foreach (var item in Model) {
-                        <tr>
-                            <td>
-                                @item.Fra
-                            </td>
-                            <td>
-                                @item.Til
-                            </td>
-                            <td>
-                                @item.Avgang
-                            </td>
-                            <td>
-                                @item.Ankomst
-                            </td>
-                            <td>
-                                @item.Pris
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id=item.RuteId }) |
-                                @Html.ActionLink("Details", "Details", new { id=item.RuteId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id=item.RuteId })
-                            </td>
-                        </tr>
-                    }*@
-            </table>
-            <button type="button" onclick="hentAlleRuter()"> Alle reiser </button><br />
-            <button type="button" onclick="hentValgteRuter()"> Søk valgte reiser</button>
+    <br />
+    <div>
+        @Html.ActionLink("Liste alle flyplasser", "Index")
+    </div>
 
-            <br />
-            <div>
-                @Html.ActionLink("Liste alle flyplasser", "Index")
-            </div>
-
-            <div>
-                @Html.ActionLink("Bestill billett", "NyBillett")
-            </div>
+    <div>
+        @Html.ActionLink("Bestill billett", "NyBillett")
+    </div>

@@ -16,18 +16,19 @@ namespace Webapps1.Context
         }
         public void LeggTilRuter(DB context)
         {
+            Random tilfeldig = new Random(399);
             Flyplass Flyplasser = new Flyplass();
             List<Rute> ruter = new List<Rute>();
-            String format1 = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy hh:mm");
-            String format2 = DateTime.Now.AddDays(14).ToString("dd-MM-yyyy hh:mm");
-            String format3 = DateTime.Now.AddDays(21).ToString("dd-MM/yyyy hh:mm");
+            String format1 = DateTime.Now.AddDays(7).ToString("dd-MM-yyyy HH:mm");
+            String format2 = DateTime.Now.AddDays(14).ToString("dd-MM-yyyy HH:mm");
+            String format3 = DateTime.Now.AddDays(21).ToString("dd-MM/yyyy HH:mm");
             ruter.Add(new Rute()
             {
                 Fra = context.Flyplasser.Find(1).By,
                 Til = context.Flyplasser.Find(2).By,
                 Avgang = format1,
                 Ankomst = format2,
-                Pris = 1890
+                Pris = tilfeldig.Next(2600)
             });
             ruter.Add(new Rute()
             {
@@ -35,7 +36,7 @@ namespace Webapps1.Context
                 Til = context.Flyplasser.Find(2).By,
                 Avgang = format2,
                 Ankomst = format3,
-                Pris = 1890
+                Pris = tilfeldig.Next(2600)
             });
             ruter.Add(new Rute()
             {
@@ -43,7 +44,7 @@ namespace Webapps1.Context
                 Til = context.Flyplasser.Find(4).By,
                 Avgang = format1,
                 Ankomst = format2,
-                Pris = 1490
+                Pris = tilfeldig.Next(2600)
             });
             ruter.Add(new Rute()
             {
@@ -51,7 +52,7 @@ namespace Webapps1.Context
                 Til = context.Flyplasser.Find(6).By,
                 Avgang = format2,
                 Ankomst = format3,
-                Pris = 1890
+                Pris = tilfeldig.Next(2600)
             });
             foreach (Rute nyRute in ruter)
             {
